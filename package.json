@@ -4,12 +4,16 @@
   "description": "ToDo rest api",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "keywords": [
     "rest api",
     "todo api"
   ],
   "author": "devmobin",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
 }
