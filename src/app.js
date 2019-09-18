@@ -1,9 +1,13 @@
 const express = require('express')
 
+const userRouter = require('./routers/user')
+const taskRouter = require('./routers/task')
+
 const app = express()
 
-app.get('/', (req, res) => {
-  res.send('API is in development part')
-})
+app.use(express.json())
+
+app.use(userRouter)
+app.use(taskRouter)
 
 module.exports = app
