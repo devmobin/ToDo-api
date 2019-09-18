@@ -29,15 +29,12 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      required: true,
-      validate(value) {}
+      required: true
     },
     password: {
       type: String,
       required: true,
-      trim: true,
-      minlength: 7,
-      validate(value) {}
+      trim: true
     }
     // tokens: [tokenSchema]
   },
