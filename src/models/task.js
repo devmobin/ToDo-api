@@ -4,7 +4,7 @@ const taskSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      require: true,
+      required: true,
       trim: true
     },
     description: {
@@ -18,7 +18,7 @@ const taskSchema = new mongoose.Schema(
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      require: true
+      required: true
     }
   },
   {
