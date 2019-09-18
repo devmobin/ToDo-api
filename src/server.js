@@ -1,6 +1,8 @@
-const app = require('./app')
-const config = require('../config/config')
+const { setupENV } = require('../config/config')
+setupENV()
 
-app.listen(config.PORT, () => {
-  console.log(`app is running on port: ${config.PORT}`)
+const app = require('./app')
+
+app.listen(process.env.PORT, () => {
+  console.log(`app is running on port: ${process.env.PORT}`)
 })

@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
-const config = require('../config/config')
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
 
@@ -14,7 +13,7 @@ app.use(cors())
 app.use(userRouter)
 app.use(taskRouter)
 
-mongoose.connect(config.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
