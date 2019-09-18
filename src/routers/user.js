@@ -1,12 +1,12 @@
 const express = require('express')
 
 const User = require('../models/user')
+const validator = require('../middlewares/validator/user')
 
 const router = express.Router()
 
-router.post('/user/signup', async (req, res) => {
+router.post('/user/signup', validator.signupValidation, async (req, res) => {
   const user = new User(req.body)
-
   try {
     await user.save()
     res.status(201).send(user)
