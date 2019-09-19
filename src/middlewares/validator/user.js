@@ -4,23 +4,29 @@ const User = require('../../models/user')
 
 const signupValidation = async (req, res, next) => {
   if (!req.body.username || !req.body.email || !req.body.password) {
-    return res
-      .status(400)
-      .send({ error: 'please enter all the required fields' })
+    return res.status(400).send({
+      error: 'please enter all the required fields [username, email, password]'
+    })
   }
 
   if (!validator.isEmail(req.body.email)) {
     return res.status(400).send({ error: 'please enter valid email' })
   }
 
-  const checkUsername = await User.findOne({ username: req.body.username })
-  if (checkUsername) {
-    return res.status(400).send({ error: 'username is already taken' })
-  }
+  const user = await User.findOne({
+    $or: [{ email: req.body.email }, { username: req.body.username }]
+  }).select('username email -_id')
 
-  const checkUserEmail = await User.findOne({ email: req.body.email })
-  if (checkUserEmail) {
-    return res.status(400).send({ error: 'email is used before' })
+  if (user) {
+    if (user.username === req.body.username) {
+      return res
+        .status(400)
+        .send({ error: `username '${req.body.username}' is already taken` })
+    }
+
+    if (user.email === req.body.email) {
+      return res.status(400).send({ error: 'email is already exists' })
+    }
   }
 
   if (
