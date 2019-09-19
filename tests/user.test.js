@@ -48,6 +48,13 @@ test('success login', async () => {
       password: 'mobin1234'
     })
     .expect(200)
+
+  // read user profile
+  await request(app)
+    .get('/user/me')
+    .set('Authorization', `Bearer ${response.body.token}`)
+    .send()
+    .expect(200)
 })
 
 test('failure login invalid password', async () => {
