@@ -1,6 +1,3 @@
-const { setupENV } = require('../config/config')
-setupENV()
-
 const app = require('./app')
 
 app.listen(process.env.PORT, () => {
