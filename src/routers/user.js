@@ -2,6 +2,7 @@ const express = require('express')
 
 const User = require('../models/user')
 const validator = require('../middlewares/validator/user')
+const auth = require('../middlewares/authentication/auth')
 
 const router = express.Router()
 
@@ -31,14 +32,16 @@ router.post('/login', validator.loginValidation, async ({ body }, res) => {
   }
 })
 
-router.get('/me', async ({ body }, res) => {})
+router.get('/me', auth, async ({ user }, res) => {
+  res.send(user)
+})
 
-router.patch('/me', async ({ body }, res) => {})
+router.patch('/me', auth, async ({ body }, res) => {})
 
-router.delete('/me', async ({ body }, res) => {})
+router.delete('/me', auth, async ({ body }, res) => {})
 
-router.get('/logout', async ({ body }, res) => {})
+router.get('/logout', auth, async ({ body }, res) => {})
 
-router.get('/logoutAll', async ({ body }, res) => {})
+router.get('/logoutAll', auth, async ({ body }, res) => {})
 
 module.exports = router
