@@ -27,6 +27,7 @@ router.post('/login', validator.loginValidation, async ({ body }, res) => {
 
     res.status(200).send({ user, token })
   } catch (e) {
+    console.log(e)
     res.status(400).send()
   }
 })
