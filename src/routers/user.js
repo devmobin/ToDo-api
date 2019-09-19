@@ -9,7 +9,9 @@ router.post('/user/signup', validator.signupValidation, async (req, res) => {
   const user = new User(req.body)
   try {
     await user.save()
-    res.status(201).send(user)
+    const token = await user.generateAuthToken()
+    // TODO: hash password
+    res.status(201).send({ user, token })
   } catch (e) {
     res.status(500).send()
   }
