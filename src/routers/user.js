@@ -5,7 +5,7 @@ const validator = require('../middlewares/validator/user')
 
 const router = express.Router()
 
-router.post('/user/signup', validator.signupValidation, async (req, res) => {
+router.post('/signup', validator.signupValidation, async (req, res) => {
   const user = new User(req.body)
 
   try {
@@ -19,16 +19,16 @@ router.post('/user/signup', validator.signupValidation, async (req, res) => {
   }
 })
 
-router.post('/user/login', async (req, res) => {})
+router.post('/login', async (req, res) => {})
 
-router.get('/user/me', async (req, res) => {})
+router.get('/me', async (req, res) => {})
 
-router.patch('/user/me', async (req, res) => {})
+router.patch('/me', async (req, res) => {})
 
-router.delete('/user/me', async (req, res) => {})
+router.delete('/me', async (req, res) => {})
 
-router.get('/user/logout', async (req, res) => {})
+router.get('/logout', async (req, res) => {})
 
-router.get('/user/logoutAll', async (req, res) => {})
+router.get('/logoutAll', async (req, res) => {})
 
 module.exports = router
