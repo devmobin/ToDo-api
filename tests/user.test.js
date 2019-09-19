@@ -38,3 +38,24 @@ test('failure signup user invalid email', async () => {
     })
     .expect(400)
 })
+
+// login tests
+test('success login', async () => {
+  const response = await request(app)
+    .post('/user/login')
+    .send({
+      email: 'mobin@gmail.com',
+      password: 'mobin1234'
+    })
+    .expect(200)
+})
+
+test('failure login invalid password', async () => {
+  const response = await request(app)
+    .post('/user/login')
+    .send({
+      email: 'mobin@gmail.com',
+      password: 'mobin12324'
+    })
+    .expect(400)
+})
