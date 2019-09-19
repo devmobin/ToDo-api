@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken')
 const tokenSchema = new mongoose.Schema(
   {
     token: {
-      type: String
+      type: String,
+      required: true
     }
   },
   {
@@ -48,6 +49,17 @@ userSchema.virtual('tasks', {
   localField: '_id',
   foreignField: 'owner'
 })
+
+userSchema.methods.toJSON = function() {
+  const user = this
+  const userObject = user.toObject()
+
+  delete userObject.tokens
+  delete userObject.password
+  delete userObject.__v
+
+  return userObject
+}
 
 userSchema.methods.generateAuthToken = async function() {
   const user = this
