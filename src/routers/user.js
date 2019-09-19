@@ -5,8 +5,8 @@ const validator = require('../middlewares/validator/user')
 
 const router = express.Router()
 
-router.post('/signup', validator.signupValidation, async (req, res) => {
-  const user = new User(req.body)
+router.post('/signup', validator.signupValidation, async ({ body }, res) => {
+  const user = new User(body)
 
   try {
     await user.save()
@@ -19,16 +19,26 @@ router.post('/signup', validator.signupValidation, async (req, res) => {
   }
 })
 
-router.post('/login', async (req, res) => {})
+router.post('/login', validator.loginValidation, async ({ body }, res) => {
+  try {
+    const user = await User.loginEmailPass(body.email, body.password)
 
-router.get('/me', async (req, res) => {})
+    const token = await user.generateAuthToken()
 
-router.patch('/me', async (req, res) => {})
+    res.status(200).send({ user, token })
+  } catch (e) {
+    res.status(400).send()
+  }
+})
 
-router.delete('/me', async (req, res) => {})
+router.get('/me', async ({ body }, res) => {})
 
-router.get('/logout', async (req, res) => {})
+router.patch('/me', async ({ body }, res) => {})
 
-router.get('/logoutAll', async (req, res) => {})
+router.delete('/me', async ({ body }, res) => {})
+
+router.get('/logout', async ({ body }, res) => {})
+
+router.get('/logoutAll', async ({ body }, res) => {})
 
 module.exports = router
