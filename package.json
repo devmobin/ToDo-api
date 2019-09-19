@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/server.js",
-    "test": "env-cmd -f ./config/test.env nodemon src/server.js"
+    "test": "env-cmd -f ./config/test.env jest -i"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [
     "rest api",
@@ -15,7 +18,9 @@
   "author": "devmobin",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.2",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
