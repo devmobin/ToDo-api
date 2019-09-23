@@ -1,6 +1,6 @@
 const validator = require('validator')
 
-const User = require('../../models/user')
+const userExists = require('../../utils/user-exist')
 
 const signupValidation = async ({ body }, res, next) => {
   if (!body.username || !body.email || !body.password) {
@@ -13,20 +13,9 @@ const signupValidation = async ({ body }, res, next) => {
     return res.status(400).send({ error: 'please enter valid email' })
   }
 
-  const user = await User.findOne({
-    $or: [{ email: body.email }, { username: body.username }]
-  }).select('username email -_id')
-
-  if (user) {
-    if (user.username === body.username) {
-      return res
-        .status(400)
-        .send({ error: `username '${body.username}' is already taken` })
-    }
-
-    if (user.email === body.email) {
-      return res.status(400).send({ error: 'email is already exists' })
-    }
+  const userExist = await userExists(body.email, body.username)
+  if (userExist) {
+    res.status(400).send({ error: userExist })
   }
 
   if (

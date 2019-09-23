@@ -32,11 +32,9 @@ router.post('/login', validator.loginValidation, async ({ body }, res) => {
   }
 })
 
-router.get('/me', auth, async ({ user }, res) => {
-  res.send(user)
-})
+router.get('/me', auth, async ({ user }, res) => res.send(user))
 
-router.patch('/me', auth, async ({ body }, res) => {})
+router.patch('/me', auth, async ({ body, user }, res) => {})
 
 router.delete('/me', auth, async ({ body }, res) => {})
 
