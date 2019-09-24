@@ -1,10 +1,21 @@
 const express = require('express')
 
+const Task = require('../models/task')
 const validator = require('../middlewares/validator/task')
 
 const router = express.Router()
 
-router.post('/new', validator.createNewTask, async ({ body, user }, res) => {})
+router.post('/new', validator.createNewTask, async ({ body, user }, res) => {
+  const task = new Task({ ...body, owner: user._id.toString() })
+
+  try {
+    await task.save()
+
+    res.status(201).send(task)
+  } catch (e) {
+    res.status(500).send()
+  }
+})
 
 router.get('/me', async ({ body }, res) => {})
 
