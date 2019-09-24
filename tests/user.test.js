@@ -3,7 +3,11 @@ const app = require('../src/app')
 const db = require('./fixtures/db')
 const User = require('../src/models/user')
 
-afterAll(() => {
+beforeAll(async () => {
+  await db.generateFakeData()
+}, 1000)
+
+afterAll(async () => {
   db.cleanupDatabase()
 }, 1000)
 

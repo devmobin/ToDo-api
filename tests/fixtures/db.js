@@ -1,4 +1,5 @@
 const User = require('../../src/models/user')
+const Task = require('../../src/models/task')
 
 const fakeUsers = [
   {
@@ -18,14 +19,35 @@ const fakeUsers = [
   }
 ]
 
+const fakeTasks = [
+  {
+    title: 'go home'
+  },
+  {
+    title: 'drink water',
+    description: 'programmers have no any drink :)'
+  },
+  {
+    title: 'edit project',
+    completed: true
+  }
+]
+
 const generateFakeData = async () => {
-  fakeUsers.forEach(async user => {
-    await new User(user).save()
-  })
+  await new User(fakeUsers[0]).save()
+  await new User(fakeUsers[1]).save()
+  await new User(fakeUsers[2]).save()
+
+  const user = await User.find({ username: 'usertest2' })
+
+  await new Task({ ...fakeTasks[0], owner: user[0]._id.toString() }).save()
+  await new Task({ ...fakeTasks[1], owner: user[0]._id.toString() }).save()
+  await new Task({ ...fakeTasks[2], owner: user[0]._id.toString() }).save()
 }
 
 const cleanupDatabase = async () => {
   await User.deleteMany({})
+  await Task.deleteMany({})
 }
 
 module.exports = {
