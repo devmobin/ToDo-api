@@ -59,7 +59,14 @@ router.patch(
   }
 )
 
-router.delete('/me', auth, async ({ body }, res) => {})
+router.delete('/me', auth, async ({ user }, res) => {
+  try {
+    await user.remove()
+    res.status(200).send({ user })
+  } catch (e) {
+    res.status(500).send()
+  }
+})
 
 router.get('/logout', auth, async ({ body }, res) => {})
 
