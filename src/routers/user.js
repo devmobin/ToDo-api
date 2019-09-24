@@ -39,19 +39,11 @@ router.patch(
   auth,
   validator.editUserProfile,
   async ({ body, user }, res) => {
-    const updates = Object.keys(body)
-    const allowedUpdates = ['name', 'email', 'password', 'username']
-    const isValidOperation = updates.every(update =>
-      allowedUpdates.includes(update)
-    )
-
-    if (!isValidOperation) {
-      return res.status(400).send({ error: 'Invalid updates!' })
-    }
-
     try {
       updates.forEach(update => (user[update] = body[update]))
+
       await user.save()
+
       res.send(user)
     } catch (e) {
       res.status(500).send()

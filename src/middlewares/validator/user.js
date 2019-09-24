@@ -51,6 +51,7 @@ const editUserProfile = ({ body }, res, next) => {
       return res.status(400).send({ error: 'please enter valid email' })
     }
   }
+
   if (body.password) {
     if (
       !validator.isLength(validator.trim(body.password), {
@@ -62,6 +63,17 @@ const editUserProfile = ({ body }, res, next) => {
       return res.status(400).send({ error: 'please enter a better password' })
     }
   }
+
+  const updates = Object.keys(body)
+  const allowedUpdates = ['name', 'email', 'password', 'username']
+  const isValidOperation = updates.every(update =>
+    allowedUpdates.includes(update)
+  )
+
+  if (!isValidOperation) {
+    return res.status(400).send({ error: 'Invalid updates!' })
+  }
+
   next()
 }
 
