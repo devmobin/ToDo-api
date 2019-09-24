@@ -111,6 +111,35 @@ test('failure edit user profile', async () => {
     .expect(401)
 })
 
+// logout user
+test('success logout user', async () => {
+  await request(app)
+    .get('/user/logout')
+    .set('Authorization', `Bearer ${token}`)
+    .expect(200)
+
+  // login again for delete user tests
+  const response = await request(app)
+    .post('/user/login')
+    .send({
+      email: 'devmobin@gmail.com',
+      password: 'mobin1234'
+    })
+
+  token = response.body.token
+})
+
+test('failure logout anAuthenticated user', async () => {
+  await request(app)
+    .get('/user/logout')
+    .expect(401)
+
+  await request(app)
+    .get('/user/logout')
+    .set('Authorization', `Bearer ${token}w`)
+    .expect(401)
+})
+
 // delete user profile
 test('success delete user', async () => {
   const response = await request(app)
