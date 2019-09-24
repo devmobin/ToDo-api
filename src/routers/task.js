@@ -1,8 +1,10 @@
 const express = require('express')
 
+const validator = require('../middlewares/validator/task')
+
 const router = express.Router()
 
-router.post('/new', async ({ body }, res) => {})
+router.post('/new', validator.createNewTask, async ({ body, user }, res) => {})
 
 router.get('/me', async ({ body }, res) => {})
 
