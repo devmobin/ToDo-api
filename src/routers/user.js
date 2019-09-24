@@ -80,6 +80,15 @@ router.get('/logout', auth, async ({ token, user }, res) => {
   }
 })
 
-router.get('/logoutAll', auth, async ({ body }, res) => {})
+router.get('/logoutAll', auth, async ({ user }, res) => {
+  try {
+    user.tokens = []
+
+    await user.save()
+    res.status(200).send()
+  } catch (e) {
+    res.status(500).send()
+  }
+})
 
 module.exports = router
