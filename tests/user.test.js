@@ -118,7 +118,7 @@ test('success logout user', async () => {
     .set('Authorization', `Bearer ${token}`)
     .expect(200)
 
-  // login again for delete user tests
+  // login again for logoutAll tests
   const response = await request(app)
     .post('/user/login')
     .send({
@@ -138,6 +138,23 @@ test('failure logout anAuthenticated user', async () => {
     .get('/user/logout')
     .set('Authorization', `Bearer ${token}w`)
     .expect(401)
+})
+
+test('success logout user from all devices', async () => {
+  await request(app)
+    .get('/user/logoutAll')
+    .set('Authorization', `Bearer ${token}`)
+    .expect(200)
+
+  // login again for delete user tests
+  const response = await request(app)
+    .post('/user/login')
+    .send({
+      email: 'devmobin@gmail.com',
+      password: 'mobin1234'
+    })
+
+  token = response.body.token
 })
 
 // delete user profile
