@@ -39,6 +39,16 @@ router.patch(
   auth,
   validator.editUserProfile,
   async ({ body, user }, res) => {
+    const updates = Object.keys(body)
+    const allowedUpdates = ['name', 'email', 'password', 'username']
+    const isValidOperation = updates.every(update =>
+      allowedUpdates.includes(update)
+    )
+
+    if (!isValidOperation) {
+      return res.status(400).send({ error: 'Invalid updates!' })
+    }
+
     try {
       updates.forEach(update => (user[update] = body[update]))
 
@@ -72,15 +82,6 @@ router.get('/logout', auth, async ({ token, user }, res) => {
   }
 })
 
-router.get('/logoutAll', auth, async ({ user }, res) => {
-  try {
-    user.tokens = []
-
-    await user.save()
-    res.status(200).send()
-  } catch (e) {
-    res.status(500).send()
-  }
-})
+router.get('/logoutAll', auth, async ({ body }, res) => {})
 
 module.exports = router

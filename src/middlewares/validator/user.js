@@ -64,16 +64,6 @@ const editUserProfile = ({ body }, res, next) => {
     }
   }
 
-  const updates = Object.keys(body)
-  const allowedUpdates = ['name', 'email', 'password', 'username']
-  const isValidOperation = updates.every(update =>
-    allowedUpdates.includes(update)
-  )
-
-  if (!isValidOperation) {
-    return res.status(400).send({ error: 'Invalid updates!' })
-  }
-
   next()
 }
 
