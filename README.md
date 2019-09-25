@@ -372,3 +372,68 @@ this will completely delete user and tasks that related to this user
   - #### Code: 401
 
 this is what you see without token
+
+---
+
+### now the interesting part
+
+# Create New Task
+
+users signed up for create tasks and here is the way:
+
+- ### URL
+
+  /task/new
+
+- ### Method
+
+  ##### `POST`
+
+- ### Data Params
+
+```javascript
+{
+  title: 'finish the project'
+}
+```
+
+- needs token header
+
+you can also send `'description'` and `'completed'`.
+but `'title'` is required
+
+`description` -> string
+
+`completed` -> boolean
+
+- ### Success Response:
+  - #### Code: 200
+    #### Content:
+
+```javascript
+{
+    completed: false,
+    _id: "5d8b90681381132868766c57",
+    title: "eat dinner",
+    owner: "5d8b79e31381132868766c52",
+    createdAt: "2019-09-25T16:06:00.570Z",
+    updatedAt: "2019-09-25T16:06:00.570Z",
+    __v: 0
+}
+```
+
+- ### Error Response:
+  - #### Code: 401
+
+this is what you see without token
+
+OR:
+
+- #### Code: 400
+  #### Content:
+
+```javascript
+{
+  error: 'please enter valid title for task'
+}
+```
