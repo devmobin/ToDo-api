@@ -349,3 +349,47 @@ this is for delete your tokens and logout from all devices
 ```
 
 this is what you see without token
+
+---
+
+# Delete User Profile
+
+this will completely delete user and tasks that related to this user
+
+- ### URL
+
+  /user/me
+
+- ### Method
+
+  ##### `DELETE`
+
+- only needs Bearer token in header
+
+- ### Success Response:
+
+  - #### Code: 200
+    #### Content:
+
+```javascript
+{
+    "_id": "5d8a42640f717a0d2ac761b8",
+    "username": "devmobin",
+    "email": "devcom@mobin.com",
+    "createdAt": "2019-09-24T16:20:52.172Z",
+    "updatedAt": "2019-09-25T15:03:30.017Z",
+    "name": "mobin"
+}
+```
+
+- ### Error Response:
+  - #### Code: 401
+    #### Content:
+
+```javascript
+{
+  error: 'please signup or login'
+}
+```
+
+this is what you see without token
