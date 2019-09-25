@@ -14,7 +14,7 @@ afterAll(async () => {
 
 // test user token
 // for testing end points that needs authentication
-let token
+let token, taskId
 
 // create new task
 test('success create new task', async () => {
@@ -29,13 +29,14 @@ test('success create new task', async () => {
   token = response.body.token
 
   // create new task
-  await request(app)
+  const responseTask = await request(app)
     .post('/task/new')
     .set('Authorization', `Bearer ${token}`)
     .send({
       title: 'finish project'
     })
     .expect(201)
+  taskId = responseTask.body._id
 })
 
 test('failure create new task anAuthenticated user', async () => {
@@ -61,4 +62,26 @@ test('failure read all tasks anAuthenticated user', async () => {
     .get('/task/me')
     .send()
     .expect(401)
+})
+
+// read one task
+test('success read one task', async () => {
+  await request(app)
+    .get(`/task/${taskId}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send()
+    .expect(200)
+})
+
+test('failure read one task', async () => {
+  await request(app)
+    .get(`/task/${taskId}`)
+    .send()
+    .expect(401)
+
+  await request(app)
+    .get(`/task/${taskId}q`)
+    .set('Authorization', `Bearer ${token}`)
+    .send()
+    .expect(404)
 })
