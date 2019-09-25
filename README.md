@@ -308,13 +308,6 @@ this is for delete your token and logout
 
 - ### Error Response:
   - #### Code: 401
-    #### Content:
-
-```javascript
-{
-  error: 'please signup or login'
-}
-```
 
 this is what you see without token
 
@@ -340,13 +333,6 @@ this is for delete your tokens and logout from all devices
 
 - ### Error Response:
   - #### Code: 401
-    #### Content:
-
-```javascript
-{
-  error: 'please signup or login'
-}
-```
 
 this is what you see without token
 
@@ -384,12 +370,5 @@ this will completely delete user and tasks that related to this user
 
 - ### Error Response:
   - #### Code: 401
-    #### Content:
-
-```javascript
-{
-  error: 'please signup or login'
-}
-```
 
 this is what you see without token
