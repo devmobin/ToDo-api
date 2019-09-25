@@ -113,3 +113,19 @@ test('failure edit task', async () => {
     })
     .expect(400)
 })
+
+// delete task
+test('failure delete task', async () => {
+  await request(app)
+    .delete(`/task/${taskId}`)
+    .send()
+    .expect(401)
+})
+
+test('success delete task', async () => {
+  await request(app)
+    .delete(`/task/${taskId}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send()
+    .expect(200)
+})
