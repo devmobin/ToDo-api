@@ -17,7 +17,19 @@ router.post('/new', validator.createNewTask, async ({ body, user }, res) => {
   }
 })
 
-router.get('/me', async ({ body }, res) => {})
+router.get('/me', async ({ user }, res) => {
+  try {
+    await user
+      .populate({
+        path: 'tasks'
+      })
+      .execPopulate()
+
+    res.status(200).send(user.tasks)
+  } catch (e) {
+    res.status(500).send()
+  }
+})
 
 router.get('/:id', async ({ body }, res) => {})
 
