@@ -192,12 +192,12 @@ this is for see your profile in database
 
 ```javascript
 {
-    "_id": "5d8a42640f717a0d2ac761b8",
-    "username": "devmobin",
-    "email": "devmobin@mobin.com",
-    "createdAt": "2019-09-24T16:20:52.172Z",
-    "updatedAt": "2019-09-25T15:03:30.017Z",
-    "name": "mobin"
+    _id: "5d8a42640f717a0d2ac761b8",
+    username: "devmobin",
+    email: "devmobin@mobin.com",
+    createdAt: "2019-09-24T16:20:52.172Z",
+    updatedAt: "2019-09-25T15:03:30.017Z",
+    name: "mobin"
 }
 ```
 
@@ -246,12 +246,12 @@ just send anything you want to edit in request body
 
 ```javascript
 {
-    "_id": "5d8a42640f717a0d2ac761b8",
-    "username": "devmobin",
-    "email": "devcom@mobin.com",
-    "createdAt": "2019-09-24T16:20:52.172Z",
-    "updatedAt": "2019-09-25T15:03:30.017Z",
-    "name": "mobin"
+    _id: "5d8a42640f717a0d2ac761b8",
+    username: "devmobin",
+    email: "devcom@mobin.com",
+    createdAt: "2019-09-24T16:20:52.172Z",
+    updatedAt: "2019-09-25T15:03:30.017Z",
+    name: "mobin"
 }
 ```
 
@@ -359,12 +359,12 @@ this will completely delete user and tasks that related to this user
 
 ```javascript
 {
-    "_id": "5d8a42640f717a0d2ac761b8",
-    "username": "devmobin",
-    "email": "devcom@mobin.com",
-    "createdAt": "2019-09-24T16:20:52.172Z",
-    "updatedAt": "2019-09-25T15:03:30.017Z",
-    "name": "mobin"
+    _id: "5d8a42640f717a0d2ac761b8",
+    username: "devmobin",
+    email: "devcom@mobin.com",
+    createdAt: "2019-09-24T16:20:52.172Z",
+    updatedAt: "2019-09-25T15:03:30.017Z",
+    name: "mobin"
 }
 ```
 
@@ -414,7 +414,7 @@ but `'title'` is required
 {
     completed: false,
     _id: "5d8b90681381132868766c57",
-    title: "eat dinner",
+    title: "finish the project",
     owner: "5d8b79e31381132868766c52",
     createdAt: "2019-09-25T16:06:00.570Z",
     updatedAt: "2019-09-25T16:06:00.570Z",
