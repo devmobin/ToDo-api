@@ -530,3 +530,64 @@ OR:
 - #### Code: 404
 
 when task doesn't exist
+
+---
+
+# Edit Task
+
+this is for editing task by id
+
+- ### URL
+
+  /task/5d8b90681381132868766c57
+
+- ### Method
+
+  ##### `PATCH`
+
+- ### Data Params
+
+```javascript
+  {
+    title: 'finish node project',
+    completed: true,
+  }
+```
+
+you can edit `'title', 'description', 'completed'`.
+
+just send anything you want to edit in request body
+
+- ### Success Response:
+  - #### Code: 200
+    #### Content:
+
+```javascript
+{
+    completed: true,
+    _id: "5d8b90681381132868766c57",
+    title: "finish node project",
+    owner: "5d8b79e31381132868766c52",
+    createdAt: "2019-09-25T16:06:00.570Z",
+    updatedAt: "2019-09-25T16:06:00.570Z",
+    __v: 0
+}
+```
+
+- ### Error Response:
+  - #### Code: 401
+
+this is what you see without token
+
+OR:
+
+- #### Code: 400
+  #### Content:
+
+```javascript
+{
+  error: 'Invalid updates!'
+}
+```
+
+when you are editing invalid field in task like: `time`
