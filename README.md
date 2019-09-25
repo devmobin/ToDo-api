@@ -278,10 +278,74 @@ OR:
 }
 ```
 
-when you are editing invalid field in user profile like: location
+when you are editing invalid field in user profile like: `location`
 
 OR:
 
 - #### Code: 500
 
 when you choose an email or username that used before :)
+
+---
+
+# Logout User
+
+this is for delete your token and logout
+
+- ### URL
+
+  /user/logout
+
+- ### Method
+
+  ##### `GET`
+
+- only needs Bearer token in header
+
+- ### Success Response:
+
+  - #### Code: 200
+
+- ### Error Response:
+  - #### Code: 401
+    #### Content:
+
+```javascript
+{
+  error: 'please signup or login'
+}
+```
+
+this is what you see without token
+
+---
+
+# Logout User from all devices
+
+this is for delete your tokens and logout from all devices
+
+- ### URL
+
+  /user/logoutAll
+
+- ### Method
+
+  ##### `GET`
+
+- only needs Bearer token in header
+
+- ### Success Response:
+
+  - #### Code: 200
+
+- ### Error Response:
+  - #### Code: 401
+    #### Content:
+
+```javascript
+{
+  error: 'please signup or login'
+}
+```
+
+this is what you see without token
