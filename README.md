@@ -74,3 +74,25 @@ users can provide more information for their account like: `name`
   error: 'please enter all the required fields [username, email, password]'
 }
 ```
+
+OR:
+
+- #### Code: 400
+  #### Content:
+
+```javascript
+{
+  error: 'username "devmobin" is already taken'
+}
+```
+
+OR:
+
+- #### Code: 400
+  #### Content:
+
+```javascript
+{
+  error: 'email is already exists'
+}
+```
