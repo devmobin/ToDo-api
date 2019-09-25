@@ -47,7 +47,32 @@ router.get('/:id', async ({ user, params }, res) => {
   }
 })
 
-router.patch('/:id', async ({ body }, res) => {})
+router.patch('/:id', async ({ body, user, params }, res) => {
+  const _id = params.id
+  const updates = Object.keys(body)
+  const allowedUpdates = ['title', 'description', 'completed']
+  const isValidOperation = updates.every(update =>
+    allowedUpdates.includes(update)
+  )
+
+  if (!isValidOperation) {
+    return res.status(400).send({ error: 'Invalid updates!' })
+  }
+
+  try {
+    const task = await Task.findOne({ _id, owner: user._id })
+
+    if (!task) {
+      return res.status(404).send()
+    }
+
+    updates.forEach(update => (task[update] = body[update]))
+    await task.save()
+    res.send(task)
+  } catch (e) {
+    res.status(400).send()
+  }
+})
 
 router.delete('/:id', async ({ body }, res) => {})
 
