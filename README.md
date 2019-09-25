@@ -96,3 +96,76 @@ OR:
   error: 'email is already exists'
 }
 ```
+
+---
+
+# Login User
+
+now you have an account and you need a valid jwt token for any operation. you can take it from signup response or for other devices you can login again.
+
+for use that token you just need to take that and put in a header for next request
+
+```javascript
+.set('Authorization', `Bearer ${token}`)
+```
+
+now time to login:
+
+- ### URL
+
+  /user/login
+
+- ### Method
+
+  ##### `POST`
+
+- ### Data Params
+
+```javascript
+  {
+    email: 'dev@gmail.com',
+    password: 'mobin1234'
+  }
+```
+
+these are required fields.
+
+- ### Success Response:
+  - #### Code: 200
+    #### Content:
+
+```javascript
+{
+    user: {
+        _id: "5d8b79e31381132868766c52",
+        username: "devmobin",
+        email: "dev@mobin.com",
+        createdAt: "2019-09-25T14:29:55.926Z",
+        updatedAt: "2019-09-25T14:29:56.230Z"
+    },
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC"
+}
+```
+
+- ### Error Response:
+  - #### Code: 400
+    #### Content:
+
+```javascript
+{
+  error: 'please enter all the required fields [email, password]'
+}
+```
+
+OR:
+
+for cases with invalid password
+
+- #### Code: 400
+  #### Content:
+
+```javascript
+{
+  error: 'Unable to login'
+}
+```
