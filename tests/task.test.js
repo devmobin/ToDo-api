@@ -85,3 +85,31 @@ test('failure read one task', async () => {
     .send()
     .expect(404)
 })
+
+// editing tasks
+test('success edit task', async () => {
+  await request(app)
+    .patch(`/task/${taskId}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send({
+      description: 'finish this node project'
+    })
+    .expect(200)
+})
+
+test('failure edit task', async () => {
+  await request(app)
+    .patch(`/task/${taskId}`)
+    .send({
+      description: 'finish this node project'
+    })
+    .expect(401)
+
+  await request(app)
+    .patch(`/task/${taskId}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send({
+      name: 'finish this node project'
+    })
+    .expect(400)
+})
