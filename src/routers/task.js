@@ -74,6 +74,20 @@ router.patch('/:id', async ({ body, user, params }, res) => {
   }
 })
 
-router.delete('/:id', async ({ body }, res) => {})
+router.delete('/:id', async ({ user, params }, res) => {
+  const _id = params.id
+
+  try {
+    const task = await Task.findOneAndDelete({ _id, owner: user._id })
+
+    if (!task) {
+      res.status(404).send()
+    }
+
+    res.send(task)
+  } catch (e) {
+    res.status(500).send()
+  }
+})
 
 module.exports = router
