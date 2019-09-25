@@ -46,3 +46,19 @@ test('failure create new task anAuthenticated user', async () => {
     })
     .expect(401)
 })
+
+// read all tasks
+test('success read all tasks', async () => {
+  await request(app)
+    .get('/task/me')
+    .set('Authorization', `Bearer ${token}`)
+    .send()
+    .expect(200)
+})
+
+test('failure read all tasks anAuthenticated user', async () => {
+  await request(app)
+    .get('/task/me')
+    .send()
+    .expect(401)
+})
