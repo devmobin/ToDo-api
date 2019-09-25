@@ -437,3 +437,52 @@ OR:
   error: 'please enter valid title for task'
 }
 ```
+
+---
+
+# Get All User Tasks
+
+return all tasks for this user
+
+- ### URL
+
+  /task/me
+
+- ### Method
+
+  ##### `GET`
+
+- only needs Bearer token in header
+
+- ### Success Response:
+
+  - #### Code: 200
+    #### Content:
+
+```javascript
+;[
+  {
+    completed: false,
+    _id: '5d8b90681381132868766c57',
+    title: 'eat dinner',
+    owner: '5d8b79e31381132868766c52',
+    createdAt: '2019-09-25T16:06:00.570Z',
+    updatedAt: '2019-09-25T16:06:00.570Z',
+    __v: 0
+  },
+  {
+    completed: false,
+    _id: '5d8b90681381132868766c57',
+    title: 'finish the project',
+    owner: '5d8b79e31381132868766c52',
+    createdAt: '2019-09-25T16:06:00.570Z',
+    updatedAt: '2019-09-25T16:06:00.570Z',
+    __v: 0
+  }
+]
+```
+
+- ### Error Response:
+  - #### Code: 401
+
+this is what you see without token
