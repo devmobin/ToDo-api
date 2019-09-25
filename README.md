@@ -591,3 +591,45 @@ OR:
 ```
 
 when you are editing invalid field in task like: `time`
+
+---
+
+# Delete Task
+
+this will completely delete the task
+
+- ### URL
+
+  /task/5d8b90681381132868766c57
+
+- ### Method
+
+  ##### `DELETE`
+
+- needs Bearer token in header
+
+- ### Success Response:
+
+  - #### Code: 200
+    #### Content:
+
+```javascript
+{
+    completed: true,
+    _id: "5d8b90681381132868766c57",
+    title: "finish node project",
+    owner: "5d8b79e31381132868766c52",
+    createdAt: "2019-09-25T16:06:00.570Z",
+    updatedAt: "2019-09-25T16:06:00.570Z",
+    __v: 0
+}
+```
+
+- ### Error Response:
+  - #### Code: 401
+
+this is what you see without token
+
+OR
+
+- #### Code: 404
